@@ -10,7 +10,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
-# Configuração da página com tema personalizado
 st.set_page_config(
     page_title="Dynamic Stats",
     page_icon="📊",
@@ -18,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS personalizado para melhorar a aparência
+# CSS personalizado
 st.markdown("""
 <style>
     .main-header {
@@ -79,7 +78,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# -------------------- Utils --------------------
+# -------------------- Utils (avisar Dr Fernando Freua se modificar) --------------------
 @st.cache_data
 def read_file(uploaded_file, sheet_name=None):
     if uploaded_file is None:
@@ -131,16 +130,16 @@ def example_df():
         csv = io.StringIO(
             """sepal_length,sepal_width,petal_length,petal_width,species\n"""
             + "\n".join([
-                "5.1,3.5,1.4,0.2,setosa",
-                "4.9,3.0,1.4,0.2,setosa",
-                "6.2,3.4,5.4,2.3,virginica",
-                "6.9,3.1,5.1,2.3,virginica",
-                "5.9,3.0,4.2,1.5,versicolor",
-                "6.0,2.2,4.0,1.0,versicolor",
-                "5.5,2.3,4.0,1.3,versicolor",
-                "5.0,3.6,1.4,0.2,setosa",
-                "6.5,3.0,5.2,2.0,virginica",
-                "5.7,2.8,4.1,1.3,versicolor",
+                "5.1,3.5,1.4,0.2,azul",
+                "4.9,3.0,1.4,0.2,azul",
+                "6.2,3.4,5.4,2.3,vermelho",
+                "6.9,3.1,5.1,2.3,vermelho",
+                "5.9,3.0,4.2,1.5,preto",
+                "6.0,2.2,4.0,1.0,preto",
+                "5.5,2.3,4.0,1.3,preto",
+                "5.0,3.6,1.4,0.2,azul",
+                "6.5,3.0,5.2,2.0,amarelo",
+                "5.7,2.8,4.1,1.3,verde",
             ])
         )
         df = pd.read_csv(csv)
@@ -259,7 +258,7 @@ with aba0:
     
     st.markdown("### 📊 Visão Geral do Dataset")
     
-    # Métricas em cards estilizados
+    # Métricas em cards
     if df is not None:
         col_a, col_b, col_c = st.columns(3)
         with col_a:
@@ -341,12 +340,12 @@ with aba1:
     st.markdown("""
     <div class="info-box">
         <p><strong>💡 PyGWalker</strong> é uma ferramenta poderosa que permite criar visualizações interativas e dashboards dinâmicos.</p>
-        <p>🎨 Arraste e solte variáveis para criar gráficos, tabelas e análises personalizadas!</p>
+        <p>🎨 Arraste e solte variáveis para criar gráficos, tabelas e análises personalizadas! Max 1000 linhas e 20 cols</p>
     </div>
     """, unsafe_allow_html=True)
     
     if df is not None:
-        # Verificar tamanho do dataset e otimizar drasticamente
+        # Verificar tamanho do dataset e otimizar - atenção a erros nesta sessão
         total_rows = len(df)
         total_cols = len(df.columns)
         
@@ -718,3 +717,4 @@ with aba2:
     """, unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
+
